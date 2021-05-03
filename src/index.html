@@ -3,9 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ThreeJS Starter</title>
+    <title>Mitchell Bifeld</title>
 </head>
 <body>
+    <div class="container">
+        <h1 class="title-text" id="title-t">HELLO! <br/> I'M MITCHELL BIFELD</h1>
+    </div>
+
     <canvas class="webgl"></canvas>
+
+    <div class="button-options">
+        <button onclick="openEducation()" class="button" id="b1">
+            EDUCATION
+        </button>
+        <button class="button" id="b2">
+            EXPERIENCE
+        </button>
+        <button class="button b3" id="b3">
+            SKILLS
+        </button>
+        <button class="button b4" id="b4">
+            SKILLS
+        </button>
+    </div>
+
+    <div class="info-page" id="education-page">
+        <div class="cancel-button"/>
+        <div class="content">
+            <h2> EDUCATION </h2>
+            <p1> University of Illinois at Urbana-Champaign </p1>
+        </div>
+    </div>
+
+    </div>
 </body>
 </html>
+
+<script>
+    window.onload = function() {
+        console.log("here")
+        document.getElementById("education-page").style.display = "none";
+    } 
+
+    function openEducation() {
+        document.getElementById("title-t").style.display = "none";
+        document.getElementById("education-page").style.display = "block";
+    }
+</script>
