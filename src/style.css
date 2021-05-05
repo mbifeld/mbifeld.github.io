@@ -16,9 +16,10 @@ body
 {
     height: 100vh;
     font-family: 'ProximaNova';
-    background: linear-gradient(25deg, #4e94da 0%, #34004b 50%, #b3005c 100%);
+    background: linear-gradient(25deg, #b5b5b5 0%, #000000 70%);
     background-size: 400% 400%;
-    animation: gradient 20s ease infinite;
+    animation: gradient 30s ease infinite;
+    color: white;
 }
 
 body {
@@ -56,12 +57,25 @@ section {
 
 .info-page {
     position: absolute;
-    left: calc(50% - 40vh);
+    left: calc(50% - 38vw);
     top: calc(50% - 30vh);
-    width: 80vh;
+    width: 75vw;
     height: 60vh;
     background: rgba(0, 0, 0, 0.75);
     border-radius: 20px;
+}
+
+.info-page-title {
+    position: absolute;
+    width: inherit;
+    text-align: center;
+    top: calc(50% - 29vh);
+    font-size: 2rem;
+}
+
+.carousel-item-title {
+    font-size: 1.5em;
+    margin-top: 5vh;
 }
 
 .button {
@@ -75,6 +89,18 @@ section {
     padding: 20px;
     text-align: center;
     font-size: 1.5rem;
+}
+
+.button:hover {
+    background: rgba(0, 0, 0, 0.7) !important;
+}
+
+.cancel-button {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    right: -16px;
+    top: -16px;
 }
 
 #b1 {
@@ -95,6 +121,11 @@ section {
 #b4 {
     bottom: 50px;
     right: 50px;
+}
+
+.cancel-icon {
+    width: 50px;
+    height: 50px;
 }
 
 .content {
@@ -130,3 +161,77 @@ p1 {
       background-position: 0% 50%;
     }
   }
+
+.carousel {
+    height: 60vh;
+}
+
+.carousel-item {
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.info-section {
+    text-align: left;
+    padding-left: 10%;
+    padding-top: 2%;
+    max-width: 50%;
+    max-height: 46vh;
+    overflow: scroll !important;
+    scrollbar-width: none;
+    word-wrap: break-word;
+    margin: 0;
+}
+
+.info-section::-webkit-scrollbar {
+    display: none;
+  }
+
+.info-subtitle {
+    color: rgb(97, 209, 157);
+    font-weight: bold;
+    font-size: 1.5em;
+    text-overflow: scroll;
+}
+
+.info-subsubtitle {
+    color: rgb(64, 149, 109);
+    font-weight: bold;
+    padding-bottom: 10px;
+    font-size: 1.25em;
+}
+
+.info-text {
+
+}
+
+.info-image {
+    position: absolute;
+    right: 10%;
+    top: 18%;
+    height: 70%;
+    max-width: 35%;
+    max-height: 80%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.carousel-control-next, .carousel-control-prev {
+    width: 8% !important;
+}
+
+#bottom-bar-1 {
+    position: absolute !important;
+    left: 300px imp !important;
+}
+
+#bottom-bar-2 {
+}
+
+#bottom-bar-3 {
+}

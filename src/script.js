@@ -24,7 +24,7 @@ const geometry = new THREE.SphereBufferGeometry(0.5, 64, 64)
 
 const material = new THREE.MeshStandardMaterial()
 material.metalness = 0.7
-material.roughness = 0.3
+material.roughness = 0.2
 material.normalMap = normalTexture;
 material.color = new THREE.Color(0x292929)
 
