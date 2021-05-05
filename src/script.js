@@ -6,7 +6,9 @@ import { PointLight } from 'three'
 
 // Loading
 const textureLoader = new THREE.TextureLoader()
+const textureLoader2 = new THREE.TextureLoader()
 const normalTexture = textureLoader.load('/textures/circuits_normal2.jpeg')
+const particleTexture = textureLoader2.load('/textures/sad_pepe.png')
 
 // Debug
 //const gui = new dat.GUI()
@@ -19,6 +21,14 @@ const scene = new THREE.Scene()
 
 // Objects
 const geometry = new THREE.SphereBufferGeometry(0.5, 64, 64)
+const particleGeometry = new THREE.BufferGeometry;
+const particleCount = 5000;
+const posArray = new Float32Array(particleCount * 3)
+
+for(let i = 0; i < (particleCount * 3); i++) {
+    posArray[i] = (Math.random() - 0.5) * 5
+}
+particleGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3))
 
 // Materials
 
@@ -28,9 +38,19 @@ material.roughness = 0.2
 material.normalMap = normalTexture;
 material.color = new THREE.Color(0x292929)
 
+const particleMaterial = new THREE.PointsMaterial({
+    size: 0.01,
+    map: particleTexture,
+    transparent: true,
+    blending: THREE.AdditiveBlending
+})
+
+
+
 // Mesh
 const sphere = new THREE.Mesh(geometry,material)
-scene.add(sphere)
+const particlesMesh = new THREE.Points(particleGeometry, particleMaterial)
+scene.add(particlesMesh, sphere)
 
 // Lights
 
@@ -129,10 +149,11 @@ scene.add(camera)
  */
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
-    alpha: true
+    //alpha: true
 })
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+renderer.setClearColor(new THREE.Color('#21282a'), 1)
 
 /**
  * Animate
@@ -143,6 +164,13 @@ document.addEventListener('mousemove', onDocumentMouseMove)
 let mouseX = 0
 let mouseY = 0
 
+let particleMouseX = 0
+let particleMouseY = 0
+
+let newX = 0
+let newY = 0
+
+
 let targetX = 0
 let targetY = 0
 
@@ -152,6 +180,9 @@ const windowY = window.innerHeight / 2
 function onDocumentMouseMove(event) {
     mouseX = (event.clientX - windowX)
     mouseY = (event.clientY - windowY)
+
+    particleMouseX = event.clientX
+    particleMouseY = event.clientY
 }
 
 window.addEventListener('scroll', updateSphere)
@@ -170,11 +201,20 @@ const tick = () =>
     const elapsedTime = clock.getElapsedTime()
 
     // Update objects
-    sphere.rotation.y = -.5 * elapsedTime
+    sphere.rotation.y = -.2 * elapsedTime
+    particlesMesh.rotation.y = -0.01 * elapsedTime
     
     sphere.rotation.y += 0.5 * (targetX - sphere.rotation.y)
     sphere.rotation.x += 0.5 * (targetY - sphere.rotation.x)
     sphere.position.z += -1 * (targetY - sphere.rotation.x)
+
+    
+    //if(newX != particleMouseX || newY != particleMouseY) {
+        particlesMesh.rotation.x = - mouseY * elapsedTime * 0.00008
+        particlesMesh.rotation.y = mouseX * elapsedTime * 0.00008
+    //}
+    newX = particleMouseX
+    newY = particleMouseY
 
     // Update Orbital Controls
     // controls.update()
